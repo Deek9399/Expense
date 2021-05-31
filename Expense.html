@@ -1,59 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense</title>
     <style>
-        body{
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
     </style>
-</head>
-<body>
-    
-<h1 id="headingTotal"></h1>
-    <input type="text" id="inputAmount">
-    <button id = "btnExpense">+</button>
+  </head>
+  <body>
+    <h1 id="headingTotal"></h1>
+    <input type="text" id="inputAmount" placeholder="amount" />
+    <input type="text" id="inputDescription" placeholder="description" />
+    <button id="btnExpense">+</button>
 
     <script>
-        //get the heading element
-        const headingElement = document.querySelector("#headingTotal");
+      //get the heading element
+      const headingElement = document.querySelector("#headingTotal");
 
-        //init value of expense to 0
-        let totalExpense = 0;
-        
-        //set the heading element to total expense
+      //get the description element (reference)
+      const description = document.querySelector("#inputDescription");
+      //read value from input amount ref to amount input
+      const inputElement = document.querySelector("#inputAmount");
+      //init value of expense to 0
+      let totalExpense = 0;
+
+      //set the heading element to total expense
+      headingElement.textContent = totalExpense;
+      // on button click add input amount to total
+
+      //Array of all expenses
+      const allExpenses = [];
+
+      function addExpenseToTotal() {
+        const expense = {};
+        // read value from input element
+        const textAmount = inputElement.value;
+        const textDescription = inputDescription.value;
+
+        //convert it to number
+        const expense = parseInt(textAmount, 10);
+        //add it to object
+        expenseItem.desc = textDescription;
+        expenseitem.amount = textAmount;
+        //Push object in array, values are not updated nut added as array allExpenses is outside the function scope
+        allExpenses.push(expenseItem);
+        console.clear();
+        console.table(allExpenses);
+        //add that value to total expense
+        totalExpense += expense;
+        console.log({ totalExpense });
+
+        //set the heading to totalExpense
         headingElement.textContent = totalExpense;
-        // on button click add input amount to total
-            
-        function addExpenseToTotal(){
-            //read value from input amount
-            const inputElement = document.querySelector("#inputAmount");
-            const textAmount = inputElement.value;
-            console.log( {textAmount} );
-
-            //convert it to number
-            const expense = parseInt(textAmount, 10);
-            console.log({expense});
-            //add that value to total expense
-            totalExpense += expense;
-            console.log( {totalExpense} );
-
-            //set the heading to totalExpense
-            headingElement.textContent = totalExpense;
-        }
-        //get button element
-        const element = document.querySelector("#btnExpense")
-        //listen to click event
-         element.addEventListener("click", addExpenseToTotal, false)
+      }
+      //get button element
+      const element = document.querySelector("#btnExpense");
+      //listen to click event
+      element.addEventListener("click", addExpenseToTotal, false);
     </script>
-
-
-</body>
+  </body>
 </html>
