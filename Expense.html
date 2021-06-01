@@ -21,6 +21,7 @@
     <input type="text" id="inputDescription" placeholder="description" />
     <button id="btnExpense">+</button>
 
+    <div id="expenseTable"></div>
     <script>
       //get the heading element
       const headingElement = document.querySelector("#headingTotal");
@@ -29,6 +30,7 @@
       const description = document.querySelector("#inputDescription");
       //read value from input amount ref to amount input
       const inputElement = document.querySelector("#inputAmount");
+      const tableElement = document.querySelector("#expenseTable");
       //init value of expense to 0
       let totalExpense = 0;
 
@@ -40,7 +42,7 @@
       const allExpenses = [];
 
       function addExpenseToTotal() {
-        const expense = {};
+        const expenseItem = {};
         // read value from input element
         const textAmount = inputElement.value;
         const textDescription = inputDescription.value;
@@ -49,17 +51,20 @@
         const expense = parseInt(textAmount, 10);
         //add it to object
         expenseItem.desc = textDescription;
-        expenseitem.amount = textAmount;
+        expenseItem.amount = textAmount;
         //Push object in array, values are not updated nut added as array allExpenses is outside the function scope
         allExpenses.push(expenseItem);
-        console.clear();
-        console.table(allExpenses);
+        //console.clear();
+        //console.table(allExpenses);
         //add that value to total expense
         totalExpense += expense;
-        console.log({ totalExpense });
+        //console.log({ totalExpense });
 
+        const someText = `The expense for this month is : ${totalExpense}`;
         //set the heading to totalExpense
-        headingElement.textContent = totalExpense;
+        headingElement.textContent = someText;
+
+        //show expense table
       }
       //get button element
       const element = document.querySelector("#btnExpense");
